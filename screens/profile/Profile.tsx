@@ -19,7 +19,7 @@ const Profile = ({route}:any) => {
 
      if (user.length < 1) {
         return(
-            <SafeAreaView className='h-full flex items-center justify-center bg-red-300'>
+            <SafeAreaView className='h-full flex items-center justify-center bg-fuchsia-300'>
                 <ActivityIndicator/>
             </SafeAreaView>
         )
