@@ -3,8 +3,9 @@ import { Audio } from 'expo-av';
 import * as React from 'react';
 import UseFetch from '../../hooks/UseFetch';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
-
+const UserTab = createBottomTabNavigator();
 type Props = {}
 
 const Profile = ({route}:any) => {
@@ -33,8 +34,9 @@ const Profile = ({route}:any) => {
         )
       } 
 
-  return (
-    <View className='h-full bg-white'>
+      const UserProfile = () => {
+        return(
+          <View className='h-full bg-white'>
         <View className='py-4 px-4 flex flex-row items-center gap-x-6'>
       <View className='h-20 w-20 rounded-full border border-fuchsia-800 '>
       <Image resizeMode='contain' className='w-full h-full rounded-full  ' source={{uri:`https://cdn.sanity.io/images/r78c84um/production/${imageurl}`}}/>
@@ -53,6 +55,16 @@ const Profile = ({route}:any) => {
       </View>
     </View>
     </View>
+        )
+      }
+
+  return (
+    <UserTab.Navigator>
+      <UserTab.Screen name="Profile" component={UserProfile} />
+      <UserTab.Screen name="Store" component={UserProfile} />
+      <UserTab.Screen name="Chat" component={UserProfile} />
+      <UserTab.Screen name="Events" component={UserProfile} />
+    </UserTab.Navigator>
   )
 }
 

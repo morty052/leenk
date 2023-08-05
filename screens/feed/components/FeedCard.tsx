@@ -30,7 +30,7 @@ const FeedCard = ({style, id, image, name, handleView}: Props) => {
         className={`bg-white rounded-xl overflow-hidden border  shadow-2xl border-fuchsia-800  flex flex-col relative ${style} `}
       >
         <Image
-          
+          resizeMode='cover'
           className="absolute top-0 w-full h-full "
           source={{uri:`https://cdn.sanity.io/images/r78c84um/production/${image}`}}
           // src={String(image)}

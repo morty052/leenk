@@ -6,6 +6,7 @@ import SplashScreen from "./SplashScreen";
 import {Profile} from "./profile";
 import { Signup } from "./signup";
 import { SignIn } from "./signin";
+import { OnBoarding } from "./onboarding";
 
 export{
     Feed,
@@ -15,5 +16,6 @@ export{
     SplashScreen,
     Profile,
     Signup,
-    SignIn
+    SignIn,
+    OnBoarding
 }

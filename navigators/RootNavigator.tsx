@@ -1,5 +1,5 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { SplashScreen, Profile, Signup, SignIn } from '../screens';
+import { SplashScreen, Profile, Signup, SignIn, OnBoarding } from '../screens';
 import { Header, HeaderRight } from '../components';
 import { Text } from 'react-native';
 import Home from '../screens/Home';
@@ -24,6 +24,7 @@ const RootNavigator = () => {
       
     }}
      >
+      <Stack.Screen options={{headerShown:false}} name="OnBoarding" component={OnBoarding} />
       <Stack.Screen options={{headerShown:false}} name="Welcome" component={SplashScreen} />
       <Stack.Screen options={{headerShown:true}} name="Signup" component={Signup} />
       <Stack.Screen options={{headerShown:true}} name="Signin" component={SignIn} />

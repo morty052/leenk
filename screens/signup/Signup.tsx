@@ -2,9 +2,11 @@ import * as React from "react";
 import { Text, TextInput, TouchableOpacity, View, SafeAreaView } from "react-native";
 import { useSignUp } from "@clerk/clerk-expo";
 import { createUser } from "./features";
+import { useNavigation } from "@react-navigation/native";
 
 export default function SignUp() {
   const { isLoaded, signUp, setActive } = useSignUp();
+  const navigation = useNavigation();
 
   const [emailAddress, setEmailAddress] = React.useState("");
   const [password, setPassword] = React.useState("");
@@ -49,6 +51,7 @@ export default function SignUp() {
       await setActive({ session: completeSignUp.createdSessionId });
       await createUser(firstname, lastname, completeSignUp.createdSessionId)
       console.log("Created User",completeSignUp.createdSessionId)
+
     } catch (err: any) {
       console.error(JSON.stringify(err, null, 2));
     }

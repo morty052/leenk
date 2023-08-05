@@ -41,7 +41,7 @@ const Header = (props: Props) => {
     <Text className='text-black text-lg font-black'>Leenks</Text>
     {/* <Entypo name="circle" size={24} color="black" /> */}
     {
-      loggedIn ? <Image source={dabi} className='h-10 w-10 rounded-full'/> : <Text>Login</Text>
+      isSignedIn ? <Image  source={dabi} className='h-10 w-10 rounded-full'/> : <Text onPress={() => navigation.navigate("Signin")}>Login</Text>
     }
     </View>
    </View>

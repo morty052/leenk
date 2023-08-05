@@ -2,7 +2,8 @@ import { View, Text, TextInput, Pressable } from 'react-native'
 import {useState} from 'react'
 import { useSignIn } from "@clerk/clerk-expo";
 import { useNavigation } from '@react-navigation/native';
-import { useHandleSignin } from './features';
+import { handleSignin } from './features';
+import LottieView from 'lottie-react-native';
 
 
 type Props = {}
@@ -43,9 +44,19 @@ const SignIn = (props: Props) => {
     }
 
     return (
-        <View>
-          <View>
+        <View className=' px-4 bg-white h-full'>
+          <View className="h-2/4 ">
+          <LottieView style={{flex:1}}
+                  source={require("../../assets/hianimation.json")}
+                  autoPlay
+                  loop
+                  
+                  
+                />
+          </View>
+          <View className='mb-4'>
             <TextInput
+              className='p-4 border rounded-xl border-fuchsia-600'
               autoCapitalize="none"
               value={emailAddress}
               placeholder="Email..."
@@ -55,6 +66,8 @@ const SignIn = (props: Props) => {
     
           <View>
             <TextInput
+             autoCapitalize='none'
+              className='p-4 border rounded-xl border-fuchsia-600'
               value={password}
               placeholder="Password..."
               secureTextEntry={true}
@@ -62,9 +75,14 @@ const SignIn = (props: Props) => {
             />
           </View>
     
-          <Pressable onPress={()=> signInUser()}>
-            <Text>Sign in</Text>
+          <View className="my-6 flex flex-row items-center justify-between">
+          <Pressable className='bg-fuchsia-300 py-2 px-8 rounded-xl ' onPress={()=> signInUser()}>
+            <Text className='text-2xl text-gray-80c0'>Sign in</Text>
           </Pressable>
+          <Pressable className='' onPress={()=> navigate.navigate("Signup")}>
+            <Text className='text-lg text-blue-600'> Create new account.</Text>
+          </Pressable>
+          </View>
         </View>
       );
 }
