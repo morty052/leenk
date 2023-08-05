@@ -5,6 +5,7 @@ import { Platform } from 'react-native';
 import { dabi } from '../assets';
 import useAuthContext from '../contexts/UserContext';
 import { useAuth, useUser } from "@clerk/clerk-expo";
+import { useNavigation } from '@react-navigation/native';
 
 
 
@@ -15,6 +16,8 @@ const Header = (props: Props) => {
 
     const {loggedIn} = useAuthContext()
     const { isSignedIn } = useUser();
+
+    const navigation = useNavigation()
     
 
   return (
@@ -23,10 +26,10 @@ const Header = (props: Props) => {
     <View className='flex flex-col justify-end '>
      <View className=" px-4 flex flex-row  items-center justify-between  ">
     <Entypo name="menu" size={24} color="black" />
-    <Text className='text-fuchsia-800 text-lg font-black'>Leenks</Text>
+    <Text onPress={() => navigation.navigate("Signup")} className='text-fuchsia-800 text-lg font-black'>Leenks</Text>
     {/* <Entypo name="circle" size={24} color="black" /> */}
     {
-      isSignedIn ? <Image source={dabi} className='h-10 w-10 rounded-full'/> : <Text>Login</Text>
+      isSignedIn ? <Image  source={dabi} className='h-10 w-10 rounded-full'/> : <Text onPress={() => navigation.navigate("Signin")}>Login</Text>
     }
     </View>
    </View>

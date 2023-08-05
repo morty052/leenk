@@ -18,5 +18,10 @@ export default {
             title:"Lastname",
             type:"string",
         },
+        {
+            name:"profileId",
+            title:"Profile Id",
+            type:"string",
+        },
     ]
 }

@@ -11,12 +11,20 @@ const Profile = ({route}:any) => {
     const { profileId} = route.params;
     const [loading, setloading] = React.useState(true)
 
-     const user = UseFetch(`https://purring-kind-hippodraco.glitch.me/users/${profileId}`)
-     
-     const {firstname, lastname, imageurl} = user?.[0] ? user[0] : []
-    
-     
+    type person = {
+     firstname?:string,
+     lastname?:string,
+     imageurl?:string
+    }
 
+    const user  = UseFetch(`https://purring-kind-hippodraco.glitch.me/users/${profileId}`)
+
+    if (user.length < 1) {
+      return null
+    }
+     
+    const {firstname, lastname, imageurl} = user ? user?.[0] : []
+    
      if (user.length < 1) {
         return(
             <SafeAreaView className='h-full flex items-center justify-center bg-fuchsia-300'>

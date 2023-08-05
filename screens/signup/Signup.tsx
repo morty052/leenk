@@ -1,12 +1,15 @@
 import * as React from "react";
 import { Text, TextInput, TouchableOpacity, View, SafeAreaView } from "react-native";
 import { useSignUp } from "@clerk/clerk-expo";
+import { createUser } from "./features";
 
 export default function SignUp() {
   const { isLoaded, signUp, setActive } = useSignUp();
 
   const [emailAddress, setEmailAddress] = React.useState("");
   const [password, setPassword] = React.useState("");
+  const [firstname, setfirstname] = React.useState("")
+  const [lastname, setlastname] = React.useState("")
   const [pendingVerification, setPendingVerification] = React.useState(false);
   const [code, setCode] = React.useState("");
 
@@ -44,17 +47,22 @@ export default function SignUp() {
       });
 
       await setActive({ session: completeSignUp.createdSessionId });
+      await createUser(firstname, lastname, completeSignUp.createdSessionId)
+      console.log("Created User",completeSignUp.createdSessionId)
     } catch (err: any) {
       console.error(JSON.stringify(err, null, 2));
     }
   };
 
+
+
   return (
     <SafeAreaView>
       {!pendingVerification && (
-        <View>
-          <View>
+        <View className="px-2 py-4">
+          <View className="mb-4">
             <TextInput
+              className="border p-2 rounded-lg"
               autoCapitalize="none"
               value={emailAddress}
               placeholder="Email..."
@@ -62,13 +70,34 @@ export default function SignUp() {
             />
           </View>
 
-          <View>
+          <View className="mb-4">
             <TextInput
+              className="border p-2 rounded-lg"
               value={password}
               placeholder="Password..."
               placeholderTextColor="#000"
               secureTextEntry={true}
               onChangeText={(password) => setPassword(password)}
+            />
+          </View>
+          <View className="mb-4">
+            <TextInput
+              className="border p-2 rounded-lg"
+              value={firstname}
+              placeholder="First name"
+              placeholderTextColor="#000"
+              secureTextEntry={false}
+              onChangeText={(firstname) => setfirstname(firstname)}
+            />
+          </View>
+          <View className="mb-4">
+            <TextInput
+              className="border p-2 rounded-lg"
+              value={lastname}
+              placeholder="Last name"
+              placeholderTextColor="#000"
+              secureTextEntry={false}
+              onChangeText={(lastname) => setlastname(lastname)}
             />
           </View>
 

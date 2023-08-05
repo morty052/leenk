@@ -6,7 +6,13 @@ type Props = {
     url?:string
 }
 
-const UseFetch = (url:string) => {
+type person = {
+  firstname:string,
+  lastname:string,
+  imageurl:string
+ }
+
+const UseFetch = (url:string):any =>  {
 const [loading, setloading] = useState(true)
 const [data, setdata] = useState([])
 
