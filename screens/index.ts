@@ -7,6 +7,8 @@ import {Profile} from "./profile";
 import { Signup } from "./signup";
 import { SignIn } from "./signin";
 import { OnBoarding } from "./onboarding";
+import {EventScreen} from "./events";
+import { ChatScreen } from "./chat";
 
 export{
     Feed,
@@ -17,5 +19,7 @@ export{
     Profile,
     Signup,
     SignIn,
-    OnBoarding
+    OnBoarding,
+    EventScreen,
+    ChatScreen
 }

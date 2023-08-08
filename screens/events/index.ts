@@ -1,5 +1,7 @@
 import Events from "./Events";
+import EventScreen from "./EventScreen";
 
 export {
-    Events
+    Events,
+    EventScreen
 }

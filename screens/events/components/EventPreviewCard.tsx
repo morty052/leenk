@@ -3,43 +3,79 @@ import {useWindowDimensions} from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { Entypo } from '@expo/vector-icons';
 import { dabi } from '../../../assets';
+import * as ImagePicker from "expo-image-picker"
+import { useState } from 'react';
 
 
 type Props = {
     style?: String,
     id?:Number,
-    image:string,
+    image?:string,
     name?:string,
     handleView?:any,
-    type:React.ReactNode
+    type:React.ReactNode,
+    ticketprice:string | number
    
 }
 
-const EventCard = ({style, id, image, name, handleView, type}: Props) => {
+const EventPreviewCard = ({style, id, image, name, handleView, type, ticketprice}: Props) => {
 
     const navigation = useNavigation()
     const {height, width} = useWindowDimensions();
     const cardwidth = width - 20
     const cardHeight = height /2 + 100
 
-    
+    const [EventImage, setEventImage] = useState("")
 
+    const formatter = ticketprice.toLocaleString("en-NG",{
+      style:"currency",
+      currency:"NGN",
+      // currencySign:"USD"
+    })
+    
+    const pickImage = async () => {
+        const image = await ImagePicker.launchImageLibraryAsync({
+          mediaTypes:ImagePicker.MediaTypeOptions.Images,
+          quality:1,
+        })
+    
+        if (!image.canceled) {
+          setEventImage(image.assets[0].uri)
+        }
+    
+      }
     
 
     return (
       <View
         style={{ width:cardwidth, height: cardHeight }}
-        className={` rounded-3xl overflow-hidden border border-gray-800    flex flex-col relative ${style} `}
+        className={` rounded-3xl overflow-hidden  border-gray-800      flex flex-col relative ${style} `}
       >
+
         {/* EVENT IMAGE */}
-        <View className="h-2/4 w-full ">
-        <Image
-          resizeMode='contain'
-          className="w-full h-full  "
-          source={{uri:`https://cdn.sanity.io/images/r78c84um/production/${image}`}}
-          // src={String(image)}
-        />
+        {  image?
+        <View className="h-2/4 w-full relative ">
+             <Image
+            resizeMode='cover'
+            className="w-full h-full  "
+            source={{uri:image}}
+            // src={String(image)}
+          /> 
+         <Pressable onPress={()=> setEventImage("")} className='absolute -top-0 right-2 bg-red-300'>
+            <Text className='text-3xl' >
+                X
+            </Text>
+         </Pressable>
         </View>
+        :
+        <View className="h-2/4 w-full rounded-t-3xl bg-white border border-dashed flex flex-col justify-center items-center gap-y-2 ">
+            <Pressable onPress={()=> pickImage()} className='flex items-center'>
+            <Entypo name="circle-with-plus" size={80} />
+            <Text className='text-xl'>Add Event Image</Text>
+            </Pressable>
+        </View>
+
+        }
 
         {/* BUTTONS */}
         <View className='h-2/4 w-full flex bg-white '>
@@ -120,7 +156,7 @@ const EventCard = ({style, id, image, name, handleView, type}: Props) => {
         <View className="flex flex-row ">
           <View className="bg-fuchsia-400 rounded-3xl px-4 py-2">
             <Text className="text-lg font-semibold">
-              $5
+              {formatter}
             </Text>
           </View>
         </View>
@@ -130,5 +166,5 @@ const EventCard = ({style, id, image, name, handleView, type}: Props) => {
     );
 }
 
-export default EventCard
+export default EventPreviewCard
 

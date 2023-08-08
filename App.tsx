@@ -16,7 +16,7 @@ export default function App() {
     <NavigationContainer>
     <RootNavigator/>
     </NavigationContainer>
-    <StatusBar style='auto'/>
+    <StatusBar backgroundColor='black' style='auto'/>
    </UserContextProvider>
    </ClerkProvider>
    </>

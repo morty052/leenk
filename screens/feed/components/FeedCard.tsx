@@ -33,6 +33,7 @@ const FeedCard = ({style, id, image, name, handleView}: Props) => {
           resizeMode='cover'
           className="absolute top-0 w-full h-full "
           source={{uri:`https://cdn.sanity.io/images/r78c84um/production/${image}`}}
+          // source={{uri:`${image}`}}
           // src={String(image)}
         />
 
